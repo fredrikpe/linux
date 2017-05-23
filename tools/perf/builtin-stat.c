@@ -497,11 +497,17 @@ static int __run_perf_stat(int argc, const char **argv)
 		if (WIFSIGNALED(status))
 			psignal(WTERMSIG(status), argv[0]);
 	} else {
-		while (!done) {
-			nanosleep(&ts, NULL);
-			if (interval)
-				print_interval();
-		}
+        char piddir[40];
+        int check_proc = target.pid && access("/proc", X_OK) == 0 && !strchr(target.pid, ','); 
+        if (check_proc) 
+            snprintf(piddir, sizeof piddir, "/proc/%d", atoi(target.pid)); 
+        while(!done) { 
+            nanosleep(&ts, NULL);
+            if (interval)
+                print_interval();
+            if (check_proc && access(piddir, X_OK) < 0 && errno == ENOENT) 
+                break; 
+        } 
 	}
 
 	t1 = rdclock();
