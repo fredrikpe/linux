@@ -34,6 +34,7 @@ include config/utilities.mak
 # Define NO_DWARF if you do not want debug-info analysis feature at all.
 #
 # Define WERROR=0 to disable treating any warnings as errors.
+WERROR=0
 #
 # Define NO_NEWT if you do not want TUI support. (deprecated)
 #

@@ -39,6 +39,12 @@ EXTRA_WARNINGS += -Wswitch-enum
 EXTRA_WARNINGS += -Wundef
 EXTRA_WARNINGS += -Wwrite-strings
 EXTRA_WARNINGS += -Wformat
+EXTRA_WARNINGS += -Wno-sign-compare
+EXTRA_WARNINGS += -Wno-type-limits
+EXTRA_WARNINGS += -Wno-unused-parameter
+EXTRA_WARNINGS += -Wno-shadow
+EXTRA_WARNINGS += -Wno-maybe-uninitialized
+
 
 ifneq ($(findstring $(MAKEFLAGS), w),w)
 PRINT_DIR = --no-print-directory
